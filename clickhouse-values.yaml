@@ -1,0 +1,71 @@
+replicaCount: 1
+shards: 1
+
+global:
+  security:
+    allowInsecureImages: true
+
+image:
+  registry: docker.io
+  repository: clickhouse/clickhouse-server
+  tag: "25.7"
+  pullPolicy: IfNotPresent
+
+# disable keeper / zookeeper completely
+zookeeper:
+  enabled: false
+
+keeper:
+  enabled: false
+
+# auth:
+#   existingSecret: clickhouse-auth
+#   existingSecretUsernameKey: username
+#   existingSecretPasswordKey: password
+#   database: default
+
+auth:
+  enabled: true
+  existingSecret: clickhouse-auth
+  existingSecretUsernameKey: username
+  existingSecretPasswordKey: password
+  usePasswordFiles: true
+  database: default
+
+
+persistence:
+  enabled: true
+  size: 20Gi
+  storageClass: gp2-csi
+
+resources:
+  requests:
+    cpu: 500m
+    memory: 1Gi
+  limits:
+    cpu: 2
+    memory: 4Gi
+
+service:
+  type: ClusterIP
+
+# required to trigger Secrets Store CSI
+extraVolumes:
+  - name: secrets-store
+    csi:
+      driver: secrets-store.csi.k8s.io
+      readOnly: true
+      volumeAttributes:
+        secretProviderClass: clickhouse-secrets
+
+extraVolumeMounts:
+  - name: secrets-store
+    mountPath: /mnt/secrets-store
+    readOnly: true
+
+serviceAccount:
+  create: false
+  name: clickhouse
+
+containerSecurityContext:
+  readOnlyRootFilesystem: false

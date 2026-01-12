@@ -31,3 +31,20 @@ eksctl --profile soal create addon \
   --region eu-central-1 --force
 
 
+kubectl edit configmap argocd-cm -n argocd
+
+## add this
+data:
+  kustomize.buildOptions: "--enable-helm"
+###
+
+kubectl rollout restart deployment argocd-repo-server -n argocd
+
+
+#helm repo add altinity-clickhouse-operator https://docs.altinity.com/clickhouse-operator/
+#helm install altinity-clickhouse-operator altinity-clickhouse-operator/altinity-clickhouse-operator --version 0.25.6
+
+
+kubectl get secret clickhouse-credentials \
+  -n clickhouse \
+  -o jsonpath='{.data.password}' | base64 -d

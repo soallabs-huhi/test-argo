@@ -1,0 +1,22 @@
+apiVersion: secrets-store.csi.x-k8s.io/v1
+kind: SecretProviderClass
+metadata:
+  name: postgres-secrets
+  namespace: airbyte
+spec:
+  provider: aws
+  parameters:
+    objects: |
+      - objectName: "poc/postgres"
+        objectType: "secretsmanager"
+        jmesPath:
+          - path: host
+            objectAlias: host
+          - path: port
+            objectAlias: port
+          - path: database
+            objectAlias: database
+          - path: username
+            objectAlias: username
+          - path: password
+            objectAlias: password

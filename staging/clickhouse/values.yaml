@@ -1,0 +1,77 @@
+clickhouse:
+  affinity: {}
+  antiAffinity: false
+  antiAffinityScope: ClickHouseInstallation
+  clusterSecret:
+    auto: true
+    enabled: false
+    secure: false
+    value: ""
+    valueFrom:
+      secretKeyRef:
+        key: secret
+        name: ""
+  defaultUser:
+    allowExternalAccess: true
+    hostIP: 0.0.0.0/0
+    password: ""
+    password_secret_name: ""
+  extraVolumes: []
+  image:
+    pullPolicy: IfNotPresent
+    repository: altinity/clickhouse-server
+    tag: 25.3.6.10034.altinitystable
+  imagePullSecrets: []
+  initScripts:
+    alwaysRun: true
+    configMapName: ""
+    enabled: false
+  keeper:
+    host: ""
+    port: 2181
+  lbService:
+    enabled: false
+    loadBalancerSourceRanges: []
+    serviceAnnotations: {}
+    serviceLabels: {}
+  nodeSelector: {}
+  persistence:
+    accessMode: ReadWriteOnce
+    enabled: true
+    logs:
+      accessMode: ReadWriteOnce
+      enabled: false
+      size: 10Gi
+    size: 10Gi
+    storageClass: ""
+  podAnnotations: {}
+  podLabels: {}
+  podSecurityContext: {}
+  replicasCount: 1
+  service:
+    serviceAnnotations: {}
+    serviceLabels: {}
+    type: ClusterIP
+  serviceAccount:
+    annotations: {}
+    create: false
+    name: ""
+  shardsCount: 1
+  users: []
+  zones: []
+keeper:
+  enabled: false
+  image: altinity/clickhouse-keeper
+  localStorage:
+    size: 5Gi
+    storageClass: ""
+  metricsPort: ""
+  nodeSelector: {}
+  podAnnotations: {}
+  replicaCount: 3
+  resources:
+    cpuLimitsMs: 500
+    cpuRequestsMs: 100
+    memoryLimitsMiB: 1Gi
+    memoryRequestsMiB: 512Mi
+

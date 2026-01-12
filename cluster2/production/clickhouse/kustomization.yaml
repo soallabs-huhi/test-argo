@@ -1,0 +1,9 @@
+helmCharts:
+  - name: clickhouse
+    repo: https://helm.altinity.com
+    releaseName: clickhouse
+    namespace: clickhouse
+    valuesFile: values.yaml
+
+resources:
+  - clickhouse-installation.yaml
