@@ -1,0 +1,10 @@
+apiVersion: v2
+name: airbyte
+description: Airbyte deployment for staging
+type: application
+version: 0.1.0
+
+dependencies:
+  - name: airbyte
+    version: "*"
+    repository: https://airbytehq.github.io/helm-charts
