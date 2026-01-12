@@ -47,7 +47,7 @@ clickhouse:
   podAnnotations: {}
   podLabels: {}
   podSecurityContext: {}
-  replicasCount: 1
+  replicasCount: 3
   service:
     serviceAnnotations: {}
     serviceLabels: {}
