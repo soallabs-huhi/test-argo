@@ -47,7 +47,7 @@ clickhouse:
   podAnnotations: {}
   podLabels: {}
   podSecurityContext: {}
-  replicasCount: 3
+  replicasCount: 1
   service:
     serviceAnnotations: {}
     serviceLabels: {}
@@ -68,7 +68,7 @@ keeper:
   metricsPort: ""
   nodeSelector: {}
   podAnnotations: {}
-  replicaCount: 3
+  replicaCount: 1
   resources:
     cpuLimitsMs: 500
     cpuRequestsMs: 100

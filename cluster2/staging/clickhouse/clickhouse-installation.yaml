@@ -18,7 +18,7 @@ spec:
   configuration:
     clusters:
     - layout:
-        replicasCount: 3
+        replicasCount: 1
         shardsCount: 1
       name: clickhouse
     files:
