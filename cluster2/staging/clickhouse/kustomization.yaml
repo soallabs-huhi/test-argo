@@ -4,8 +4,6 @@ helmCharts:
     releaseName: clickhouse
     namespace: clickhouse
     valuesFile: values.yaml
-    skipCRDs: true
-
 
 resources:
   - clickhouse-installation.yaml
